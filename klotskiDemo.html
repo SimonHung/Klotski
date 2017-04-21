@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>求解華容道(Klotski Solver)</title>
+<!-- DON'T FORGET TO MODIFY *.web.html -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./queue/queue.js"></script>
+<script type="text/javascript" src="./hashmap/hashmap.js"></script>
+<script type="text/javascript" src="klotski.board.fayaa.js"></script>
+<script type="text/javascript" src="klotski.board.unblock2.js"></script>
+<script type="text/javascript" src="klotski.board.wayout.js"></script>
+<script type="text/javascript" src="klotski.share.js"></script>
+<script type="text/javascript" src="klotskiSolver.js"></script>
+<script type="text/javascript" src="klotskiDemo.js"></script>
+<style> 
+textarea, button{font-family:Courier; }
+button, #board_type, #select_item {width: 195px; }
+textarea {resize:none;}
+</style>
+<body onLoad="initKlotski()">
+<h1><a target="_blank" href="http://zh.wikipedia.org/wiki/華容道_(遊戲)">華容道</a> (Klotski Solver)</h1>
+
+<table border="1">
+<tr>
+<td rowspan='2' valign='top'>
+	<div id="outputDiv">
+	<textarea id='text_output' rows="26" cols="85" readonly="readonly"></textarea>
+	</div>	
+</td>
+<td align='center'>
+	<select id='board_type' name="boardType" onchange="setSelectItems(this.value)">
+	</select>
+</td>
+</tr>
+<tr>
+<td valign='top'>
+	<select id='select_item' name="item" size='22'  onchange="main(this.value)">
+	</select>
+</td>
+</tr>
+</table>
+<input name="moveMode" value="1" onclick="main()" checked="checked" type="radio">移動同一方塊視為一步&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="moveMode" value="2" onclick="main()" type="radio">直線移動視為一步&nbsp;&nbsp;&nbsp;&nbsp;
+<input name="moveMode" value="3" onclick="main()" type="radio">移動一格視為一步&nbsp;&nbsp;&nbsp;&nbsp;
+</body>
+</html>

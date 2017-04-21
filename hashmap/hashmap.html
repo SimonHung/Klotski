@@ -1,0 +1,103 @@
+<html>
+<head>
+<script type="text/javascript" src="hashmap.js"></script>
+
+</head>
+<body>
+<h1>Hash Map Test program</h1>
+<p id="demo">Hash Map Test program</p>
+<button type="button" onclick="main2()">Start</button>
+</body>
+<script type="text/javascript">
+
+function main()
+{
+	var MAX_SIZE = 10000000;
+	var START_INT = 0x123456;
+	var h = new hashMap();
+	var node, i;
+	
+	for(i = START_INT; i < START_INT+MAX_SIZE; i++) {
+		h.put(i,i);
+	}
+
+	for(i = START_INT; i < START_INT+MAX_SIZE; i++) {
+		if((node = h.get(i))) {
+			//console.log(node.value);
+		} else {
+			console.log("key:" + i + " without value");
+		}
+	}
+	console.log("hashmap size = " + h.size() );
+	console.log("maximum collision = " + h.maxCollision() );
+	
+}
+
+
+function main1()
+{
+	var MAX_SIZE = 1000000;
+	var matrix = [];
+	var h = new hashMap();
+	var node, i, j;
+	
+	for(i = 0; i < MAX_SIZE; i++) {
+		matrix[i] = Math.floor(Math.random() * 9007199254740991 )+1;
+		//matrix[i] = 123456+i;
+		h.put(matrix[i], matrix[i]);
+	}
+
+	for(i = 0; i < MAX_SIZE; i++) {
+		if((node = h.get(matrix[i]))) {
+			//console.log(node.value);
+		} else {
+			console.log("key:" + i + " without value");
+		}
+	}
+	console.log("hashmap size = " + h.size() );
+	console.log("maximum collision = " + h.maxCollision() );
+	console.log("avage = " + h.avage() );
+	
+}
+
+//test remove() function
+function main2()
+{
+	var MAX_SIZE = 1000000;
+	var matrix = [];
+	var h = new hashMap();
+	var node, i, j;
+	
+	for(i = 0; i < MAX_SIZE; i++) {
+		h.put(i, i);
+	}
+	console.log("hashmap size = " + h.size() );
+	console.log("maximum collision = " + h.maxCollision() );
+	console.log("avage = " + h.avage() );
+	
+	for(i = 0; i < MAX_SIZE; i+=2) {
+		h.remove(i, i);
+	}
+
+	for(i = 0; i < MAX_SIZE; i++) {
+		node = h.get(i);
+		//if(node) console.log(node.value);
+	}
+	console.log("hashmap size = " + h.size() );
+	console.log("maximum collision = " + h.maxCollision() );
+	console.log("avage = " + h.avage() );
+
+	for(i = 0; i < MAX_SIZE; i+=2) {
+		h.put(i, i);
+	}
+	for(i = 0; i < MAX_SIZE; i++) {
+		node = h.get(i);
+		//if(node) console.log(node.value);
+	}
+	console.log("hashmap size = " + h.size() );
+	console.log("maximum collision = " + h.maxCollision() );
+	console.log("avage = " + h.avage() );
+}
+
+</script>
+</html> 

@@ -1,0 +1,64 @@
+<html>
+<head>
+<script type="text/javascript" src="queue.js"></script>
+
+</head>
+<body>
+<h1>My First Web Page</h1>
+<p id="demo">This is a paragraph.</p>
+<button type="button" onclick="main1()">Display Date</button>
+</body>
+<script type="text/javascript">
+function main()
+{
+	var q = new queue();
+	
+	q.add(100);
+	q.add(200);
+	q.add(300);
+	
+	q.dump();
+	
+	console.log("queue remove: " + q.remove());
+	console.log("queue remove: " + q.remove());
+
+	q.dump();
+
+	q.add(400);
+	q.add(500);
+	q.add(600);
+
+	q.dump();
+	
+	console.log("queue remove: " + q.remove());
+	console.log("queue remove: " + q.remove());
+	
+	q.test(600);
+
+	q.dump();
+	
+}
+function main1()
+{
+	var q = new queue();
+
+var start = new Date().getTime();
+	for(var i = 0 ; i < 1000000 ; i++) {
+		//q.add( Math.floor(Math.random() * 100000 )+1); //add value to queue
+		q.add(i); //add value to queue
+	}
+	
+	var elapsed = new Date().getTime() - start;
+	console.log("inset = " + elapsed/1000);
+
+	var current, last=undefined;
+	
+	while(q.size() > 0) {
+		current = q.remove();
+		//console.log(current);
+	}
+var elapsed = new Date().getTime() - start;
+	console.log("Total = " + elapsed/1000);
+}
+</script>
+</html> 
