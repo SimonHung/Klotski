@@ -11,7 +11,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 81 steps, elapsed time: 42.7 ms, 23940 explored
+ 81 steps, elapsed time: 26.29 ms, 12006 explored
 
 (02) 指揮若定
  ┌───┬───────┬───┐ 
@@ -26,7 +26,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 70 steps, elapsed time: 37.45 ms, 22766 explored
+ 70 steps, elapsed time: 23.75 ms, 11416 explored
 
 (03) 將擁曹營
  ┌───┬───────┬───┐ 
@@ -41,7 +41,7 @@
  │       │   │   │ 
  └───────┴───┴───┘ 
                    
- 72 steps, elapsed time: 40.44 ms, 23574 explored
+ 72 steps, elapsed time: 25.18 ms, 11986 explored
 
 (04) 齊頭並進
  ┌───┬───────┬───┐ 
@@ -56,7 +56,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 60 steps, elapsed time: 40.79 ms, 23572 explored
+ 60 steps, elapsed time: 24.17 ms, 11844 explored
 
 (05) 兵分三路
  ┌───┬───────┬───┐ 
@@ -71,7 +71,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 72 steps, elapsed time: 26.95 ms, 16327 explored
+ 72 steps, elapsed time: 17.03 ms, 8292 explored
 
 (06) 雨聲淅瀝
  ┌───┬───────┬───┐ 
@@ -86,7 +86,7 @@
  │   │   │ E │   │ 
  └───┴───┴───┴───┘ 
                    
- 47 steps, elapsed time: 4.86 ms, 2092 explored
+ 47 steps, elapsed time: 3.88 ms, 1616 explored
 
 (07) 左右佈兵
  ┌───┬───────┬───┐ 
@@ -101,7 +101,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 54 steps, elapsed time: 35.65 ms, 21058 explored
+ 54 steps, elapsed time: 21.8 ms, 10565 explored
 
 (08) 桃花園中
  ┌───┬───────┬───┐ 
@@ -116,7 +116,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 70 steps, elapsed time: 40.74 ms, 23633 explored
+ 70 steps, elapsed time: 24.64 ms, 11883 explored
 
 (09) 一路進軍
  ┌───┬───────┬───┐ 
@@ -131,7 +131,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 58 steps, elapsed time: 36.34 ms, 21603 explored
+ 58 steps, elapsed time: 23.48 ms, 11194 explored
 
 (10) 一路順風
  ┌───┬───────┬───┐ 
@@ -146,7 +146,7 @@
  │ E │   │   │ E │ 
  └───┴───┴───┴───┘ 
                    
- 39 steps, elapsed time: 4.11 ms, 2012 explored
+ 39 steps, elapsed time: 4.03 ms, 1601 explored
 
 (11) 圍而不殲
  ┌───┬───────┬───┐ 
@@ -161,7 +161,7 @@
  │ E │   │   │ E │ 
  └───┴───┴───┴───┘ 
                    
- 62 steps, elapsed time: 4.24 ms, 2092 explored
+ 62 steps, elapsed time: 4.71 ms, 1616 explored
 
 (12) 捷足先登
  ┌───┬───────┬───┐ 
@@ -176,7 +176,7 @@
  │   │   │   │   │ 
  └───┴───┴───┴───┘ 
                    
- 32 steps, elapsed time: 4.94 ms, 2031 explored
+ 32 steps, elapsed time: 3.25 ms, 1058 explored
 
 (13) 插翅難飛
  ┌───┬───────┬───┐ 
@@ -191,7 +191,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 62 steps, elapsed time: 63.11 ms, 37344 explored
+ 62 steps, elapsed time: 44.91 ms, 21900 explored
 
 (14) 插翅難飛2
  ┌───┬───────┬───┐ 
@@ -206,7 +206,7 @@
  │       │       │ 
  └───────┴───────┘ 
                    
- 63 steps, elapsed time: 44.79 ms, 25913 explored
+ 63 steps, elapsed time: 26.58 ms, 13179 explored
 
 (15) 守口如瓶1
  ┌───┬───────┬───┐ 
@@ -221,7 +221,7 @@
  │       │       │ 
  └───────┴───────┘ 
                    
- 81 steps, elapsed time: 72.94 ms, 43123 explored
+ 81 steps, elapsed time: 42.9 ms, 21576 explored
 
 (16) 守口如瓶2
  ┌───┬───────┬───┐ 
@@ -236,7 +236,7 @@
  │       │       │ 
  └───────┴───────┘ 
                    
- 99 steps, elapsed time: 74.72 ms, 43913 explored
+ 99 steps, elapsed time: 44.48 ms, 21984 explored
 
 (17) 雙將擋路
  ┌───┬───────┬───┐ 
@@ -251,7 +251,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 73 steps, elapsed time: 65.65 ms, 38765 explored
+ 73 steps, elapsed time: 43.64 ms, 21999 explored
 
 (18) 橫馬當關
  ┌───┬───────┬───┐ 
@@ -266,7 +266,7 @@
  │   │   │ E │   │ 
  └───┴───┴───┴───┘ 
                    
- 83 steps, elapsed time: 71.86 ms, 42318 explored
+ 83 steps, elapsed time: 42.47 ms, 21180 explored
 
 (19) 層層設防1
  ┌───┬───────┬───┐ 
@@ -281,7 +281,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 102 steps, elapsed time: 51.12 ms, 30135 explored
+ 102 steps, elapsed time: 30.53 ms, 15217 explored
 
 (20) 層層設防2
  ┌───┬───────┬───┐ 
@@ -296,7 +296,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 120 steps, elapsed time: 64.35 ms, 37518 explored
+ 120 steps, elapsed time: 37.24 ms, 18803 explored
 
 (21) 兵擋將阻
  ┌───┬───────┬───┐ 
@@ -311,7 +311,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 87 steps, elapsed time: 57.5 ms, 35143 explored
+ 87 steps, elapsed time: 37.94 ms, 18938 explored
 
 (22) 堵塞要道
  ┌───┬───────┬───┐ 
@@ -326,7 +326,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 40 steps, elapsed time: 15.76 ms, 9009 explored
+ 40 steps, elapsed time: 18.53 ms, 9005 explored
 
 (23) 甕中之鼈
  ┌───┬───────┬───┐ 
@@ -341,7 +341,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 103 steps, elapsed time: 49.69 ms, 29601 explored
+ 103 steps, elapsed time: 29.64 ms, 14855 explored
 
 (24) 層巒疊嶂
  ┌───┬───────┬───┐ 
@@ -356,7 +356,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 98 steps, elapsed time: 49.68 ms, 29601 explored
+ 98 steps, elapsed time: 30.15 ms, 14855 explored
 
 (25) 水泄不通
  ┌───┬───────┬───┐ 
@@ -371,7 +371,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 79 steps, elapsed time: 22.16 ms, 13313 explored
+ 79 steps, elapsed time: 17.92 ms, 8920 explored
 
 (26) 四路進兵
  ┌───┬───────┬───┐ 
@@ -386,7 +386,7 @@
  │       │       │ 
  └───────┴───────┘ 
                    
- 77 steps, elapsed time: 22.26 ms, 13313 explored
+ 77 steps, elapsed time: 17.96 ms, 8920 explored
 
 (27) 四路進兵2
  ┌───┬───────┬───┐ 
@@ -401,7 +401,7 @@
  │       │       │ 
  └───────┴───────┘ 
                    
- 66 steps, elapsed time: 23.4 ms, 13313 explored
+ 66 steps, elapsed time: 18.48 ms, 8920 explored
 
 (28) 入地無門
  ┌───┬───────┬───┐ 
@@ -416,7 +416,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 87 steps, elapsed time: 22.07 ms, 13313 explored
+ 87 steps, elapsed time: 18.29 ms, 8920 explored
 
 (29) 勇闖五關
  ┌───┬───────┬───┐ 
@@ -431,7 +431,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 34 steps, elapsed time: 5.94 ms, 2692 explored
+ 34 steps, elapsed time: 3.67 ms, 1359 explored
 
 (30) 四面楚歌
  ┌───┬───┬───┬───┐ 
@@ -446,7 +446,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 56 steps, elapsed time: 24.47 ms, 13723 explored
+ 56 steps, elapsed time: 17.2 ms, 8324 explored
 
 (31) 前呼後擁
  ┌───┬───┬───────┐ 
@@ -461,7 +461,7 @@
  │ E   E │   │   │ 
  └───────┴───┴───┘ 
                    
- 22 steps, elapsed time: 2.38 ms, 676 explored
+ 22 steps, elapsed time: 2.34 ms, 660 explored
 
 (32) 兵臨曹營
  ┌───┬───────┬───┐ 
@@ -476,7 +476,7 @@
  │ E │   │   │ E │ 
  └───┴───┴───┴───┘ 
                    
- 34 steps, elapsed time: 4.87 ms, 2031 explored
+ 34 steps, elapsed time: 3.34 ms, 1058 explored
 
 (33) 五將逼宮
  ┌───────┬───────┐ 
@@ -491,7 +491,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 36 steps, elapsed time: 13.85 ms, 8174 explored
+ 36 steps, elapsed time: 9.14 ms, 4132 explored
 
 (34) 雲遮霧障
  ┌───┬───────┬───┐ 
@@ -506,7 +506,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 81 steps, elapsed time: 70.85 ms, 42253 explored
+ 81 steps, elapsed time: 42.89 ms, 21663 explored
 
 (35) 三軍聯防
  ┌───────┬───┬───┐ 
@@ -521,7 +521,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 65 steps, elapsed time: 23.45 ms, 13738 explored
+ 65 steps, elapsed time: 24.75 ms, 12520 explored
 
 (36) 前擋後阻
  ┌───────┬───────┐ 
@@ -536,7 +536,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 42 steps, elapsed time: 19.23 ms, 11611 explored
+ 42 steps, elapsed time: 17.74 ms, 8741 explored
 
 (37) 近在咫尺
  ┌───┬───┬───┬───┐ 
@@ -551,7 +551,7 @@
  │ E   E │       │ 
  └───────┴───────┘ 
                    
- 98 steps, elapsed time: 70.94 ms, 41784 explored
+ 98 steps, elapsed time: 44.3 ms, 21945 explored
 
 (38) 走投無路
  ┌───┬───────┬───┐ 
@@ -566,7 +566,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- No solution, elapsed time: 13.78 ms, 7462 explored
+ No solution, elapsed time: 8.85 ms, 3731 explored
 
 (39) 小燕出巢
  ┌───┬───────┬───┐ 
@@ -581,7 +581,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 103 steps, elapsed time: 50.04 ms, 29601 explored
+ 103 steps, elapsed time: 29.66 ms, 14855 explored
 
 (40) 比翼橫空
  ┌───────┬───────┐ 
@@ -596,7 +596,7 @@
  │   │ E │   │   │ 
  └───┴───┴───┴───┘ 
                    
- 28 steps, elapsed time: 4.86 ms, 2386 explored
+ 28 steps, elapsed time: 5.95 ms, 2338 explored
 
 (41) 夾道藏兵
  ┌───────┬───┬───┐ 
@@ -611,7 +611,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 75 steps, elapsed time: 24.01 ms, 13730 explored
+ 75 steps, elapsed time: 18.48 ms, 9045 explored
 
 (42) 屯兵東路
  ┌───────┬───┬───┐ 
@@ -626,7 +626,7 @@
  │   │   │ E   E │ 
  └───┴───┴───────┘ 
                    
- 71 steps, elapsed time: 33.46 ms, 19390 explored
+ 71 steps, elapsed time: 22.3 ms, 10599 explored
 
 (43) 四將連關
  ┌───────┬───────┐ 
@@ -641,7 +641,7 @@
  │   │ E   E │   │ 
  └───┴───────┴───┘ 
                    
- 39 steps, elapsed time: 4.44 ms, 2282 explored
+ 39 steps, elapsed time: 5.69 ms, 2210 explored
 
 (44) 峰迴路轉
  ┌───┬───┬───┬───┐ 
@@ -656,7 +656,7 @@
  │ E │   │       │ 
  └───┴───┴───────┘ 
                    
- 138 steps, elapsed time: 71.86 ms, 42695 explored
+ 138 steps, elapsed time: 42.81 ms, 21554 explored
 
 (45) 井底之蛙
  ┌───┬───────┬───┐ 
@@ -671,7 +671,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 68 steps, elapsed time: 42.39 ms, 25913 explored
+ 68 steps, elapsed time: 27.34 ms, 13179 explored
 
 (46) 似遠實近
  ┌───────┬───────┐ 
@@ -686,7 +686,7 @@
  │   │   │   │   │ 
  └───┴───┴───┴───┘ 
                    
- 15 steps, elapsed time: 2.85 ms, 994 explored
+ 15 steps, elapsed time: 3.23 ms, 985 explored
 
 (47) 身先士卒
  ┌───────┬───────┐ 
@@ -701,7 +701,7 @@
  │   │   │ E   E │ 
  └───┴───┴───────┘ 
                    
- 21 steps, elapsed time: 3.45 ms, 1327 explored
+ 21 steps, elapsed time: 4.36 ms, 1322 explored
 
 (48) 兵威將廣
  ┌───────┬───┬───┐ 
@@ -716,7 +716,7 @@
  │ E │       │ E │ 
  └───┴───────┴───┘ 
                    
- 52 steps, elapsed time: 8.63 ms, 4302 explored
+ 52 steps, elapsed time: 6.75 ms, 2841 explored
 
 
  Finished !

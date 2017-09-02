@@ -60,11 +60,16 @@ function gEasyBoard(boardString)
 // javascript: They are 64-bit floating point values, 
 //             the largest exact integral value is 2 ^ 53
 //             but bitwise/shifts only operate on int32
+//
+// add support key for left-right mirror, 09/02/2017
 //---------------------------------------------------------
-function gBoard2Key(board)
+function gBoard2Key(board, mirror=0)
 {
 	var boardKey = 0;
 	var primeBlockPos = -1;
+	var invBase = 0;
+	
+	if(mirror) invBase = -(G_BOARD_X + 1); //key for mirror board
 
 	for(var i = 0; i < board.length; i++) {
 		//---------------------------------------------------------------------
@@ -80,7 +85,8 @@ function gBoard2Key(board)
 		// * 2   : one cell use 2 bits 
 		// + 4   : prime minister block position use 4 bits
 		//---------------------------------------------------------------------
-		if((blockValue = board[i]) == G_GOAL_BLOCK){
+		if(!(i % G_BOARD_X)) invBase += G_BOARD_X*2; //key for mirror board
+		if((blockValue = board[mirror?invBase-i:i]) == G_GOAL_BLOCK){
 			//skip prime minister block (曹操), only keep position  
 			if(primeBlockPos < 0) primeBlockPos = i;
 			continue;

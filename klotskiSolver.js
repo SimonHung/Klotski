@@ -1,9 +1,12 @@
 //=======================================================================================================
 // Klotski solver (華容道) - BFS (Breadth-first search)
 //
-// 09/01/2017 - fixed hash-key duplicate calculation by saving hash-key to queue 
+// 09/02/2017 - Don't calculate left-right mirror state 
+//              reference: https://github.com/jeantimex/Klotski
 //
-// 08/21/2013 - add support 3 option (default = RIGHT_ANGLE_TURN)
+// 09/01/2017 - Fixed hash-key duplicate calculation by saving hash-key to queue 
+//
+// 08/21/2013 - Add support 3 option (default = RIGHT_ANGLE_TURN)
 //
 // 05/20/2013 - Include "klitski.share.js" for share variable & function
 //              and move easyBoard(), board2Key(), blockCheck(), rowMajorToIndex() 
@@ -27,7 +30,8 @@ function klotskiSolution()
 	//-----------
 	// define
 	//-----------
-	var MOVE_MODE = { RIGHT_ANGLE_TURN:1, STRAIGHT:2, ONE_CELL_ONLY:3 }; //08/21/2013
+	const MOVE_MODE = { RIGHT_ANGLE_TURN:1, STRAIGHT:2, ONE_CELL_ONLY:3 }; //08/21/2013
+	const SKIP_MIRROR_STATE = 1; // 09/02/2017
 	//-----------
 	// variable	
 	//-----------
@@ -54,10 +58,15 @@ function klotskiSolution()
 	//------------------------------------------------------------
 	function statePropose(boardObj, parentKey)
 	{
+		var curMirrorKey;
 		var acceptState;
 		var rc;
 
 		if(H.put(boardObj.key, parentKey) == null) {
+			if(SKIP_MIRROR_STATE) { //don't calculate left-right mirror state
+				curMirrorKey = gBoard2Key(boardObj.board, 1);
+				H.put(curMirrorKey, parentKey);
+			}
 			//no any state same as current, add it
 			Q.add({board:boardObj.board.slice(0), key:boardObj.key});
 			return 1; //add new state
