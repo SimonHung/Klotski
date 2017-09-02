@@ -1,0 +1,184 @@
+<html>
+<head>
+<title>求解華容道(Klotski Solver)</title>
+<!-- DON'T FORGET TO MODIFY *.web.html -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="./queue/queue.js"></script>
+<script type="text/javascript" src="./hashmap/hashmap.js"></script>
+<script type="text/javascript" src="klotski.board.fayaa.js"></script>
+<script type="text/javascript" src="klotski.share.js"></script>
+<script type="text/javascript" src="klotskiSolver.js"></script>
+<style>
+textarea, button{font-family:Courier; }
+button, #board_type, #select_item {width: 195px; }
+textarea {resize:none;}
+</style>
+<body onLoad="Kinit()">
+<h1>華容道 計算最佳步數所需時間(計算100次的平均時間)</h1>
+<p><button type="button" onclick="startStop()" id='button1' >Start</button>
+<p><textarea id='text_output' rows="26" cols="85" readonly="readonly"></textarea>
+</body>
+
+<script>
+var buttonState=0, buttonStop = 0;
+var textareaElement, buttonElement;
+var gBoardBuf = [];
+var blockFlag1 = [ "   ", "XXX", "XXX", "─┘ ", "XXX", " │ ", "─┐ ", "─┤ ", "XXX", " └─", "───", "─┴─", " ┌─", " ├─", "─┬─", "─┼─" ];
+var blockFlag2 = [ "   ", "XXX", "XXX", "   ", "XXX", " │ ", " │ ", " │ ", "XXX", "   ", "   ", "   ", " │ ", " │ ", " │ ", " │ " ];
+
+function Kinit()
+{
+	textareaElement = document.getElementById('text_output');
+	buttonElement = document.getElementById('button1');
+
+	//initial global variable
+	for(var i = 0; i <= G_BOARD_Y*2 ; i++) gBoardBuf[i] = [];
+
+
+}
+
+function startStop()
+{
+	switch(buttonState) {
+	case 0: //start
+		textareaElement.value = "";
+		buttonElement.innerHTML = "Stop";
+		buttonState = 1;
+		setTimeout(function(){ outputBoardElapsedTime(0); }, 200);
+		break;
+	case 1:	//stop
+		buttonStop = 1;
+		buttonElement.disabled = true;
+		buttonElement.innerHTML = "Stop";
+		break;
+	}
+}
+
+function buttonEnable()
+{
+	buttonState = 0;
+	buttonStop = 0;
+	buttonElement.innerHTML = "Start";
+	buttonElement.disabled = false;
+}
+
+function displayText(textValue)
+{
+	textareaElement.value += textValue;
+}
+
+function scollTextToButtom()
+{
+	textareaElement.scrollTop = textareaElement.scrollHeight;
+}
+
+//-----------------------------------------------------------------
+// get board[x,y] ascii value , if out of range return null
+//-----------------------------------------------------------------
+function getBlockValue(board, x, y)
+{
+	return (x>=0 && x < G_BOARD_X && y >= 0 && y < G_BOARD_Y ?
+	        board[x+ G_BOARD_X *y]:null);
+}
+
+//----------------------------------------------
+// Draw the board to buffer for output all step
+//----------------------------------------------
+function printBoard(board)
+{
+	var flagValue =[];
+	var boardBuf;
+
+	for(var y = -1; y < G_BOARD_Y ; y++) {
+		for(var x = -1; x < G_BOARD_X; x++) {
+			flagValue[x+1] = 0;
+			if(getBlockValue(board,x,y) != getBlockValue(board,x+1,y)) flagValue[x+1] += 1;
+			if(getBlockValue(board,x,y) != getBlockValue(board,x,y+1)) flagValue[x+1] += 2;
+			if(getBlockValue(board,x,y+1) != getBlockValue(board,x+1,y+1)) flagValue[x+1] += 4;
+			if(getBlockValue(board,x+1,y) != getBlockValue(board,x+1,y+1)) flagValue[x+1] += 8;
+		}
+
+		boardBuf = "";
+		for(var x = -1; x < G_BOARD_X; x++) {
+			boardBuf += blockFlag1[flagValue[x+1]];
+
+			if(x < G_BOARD_X-1) {
+				if(flagValue[x+1] & 8) boardBuf += '─';
+				else boardBuf += ' ';
+			}
+		}
+		displayText(boardBuf+"\n");
+
+		boardBuf="";
+		for(x = -1; x < G_BOARD_X; x++) {
+			boardBuf += blockFlag2[flagValue[x+1]];
+			if(x < G_BOARD_X-1) {
+				if(getBlockValue(board,x+1,y+1) == '@') //empty
+					boardBuf += 'E';
+				else
+					boardBuf += ' ';
+			}
+		}
+		displayText(boardBuf+"\n");
+	}
+}
+
+var findAnswer = new klotskiSolution();
+var list = [0,1,2,3,4,5,6,7,8,9,10,11,
+	       12,56,   13,14,
+		   15,16,17,18,19,20,21,22,23,
+		   24,122,  25,26,
+	       38,39,40,41,42,44,
+		   45,46,47,48,49,50,51,52,
+		   54,55,
+	       //============================================================
+	       //below from http://zh.wikipedia.org/wiki/華容道_(遊戲)
+	       //============================================================
+		   57,405,406
+	];
+
+function outputBoardElapsedTime(boardId)
+{
+	var result;
+	var times = 100;
+
+	if(buttonStop) {
+		displayText("\n Stop by User!\n");
+		scollTextToButtom();
+		buttonEnable();
+		return;
+	}
+
+	if(boardId >= list.length) {
+		buttonElement.innerHTML = "\n Finished \n";
+		buttonElement.disabled = true;
+		displayText("\n Finished !\n");
+		scollTextToButtom();
+		return;
+	}
+
+	var idx = list[boardId];
+	var startTime = new Date();
+	for(var t = 0; t < times; t++) {
+		findAnswer.init(initBoardFayaa[idx].board, 1);
+		var result = findAnswer.find();
+	}
+
+	if(result.boardList == null) {
+		var resultMsg = "No solution, ";
+	} else {
+		var totalSteps = result.boardList.length-1;
+		var resultMsg = totalSteps + " steps, ";
+	}
+	var endTime = new Date();
+
+	displayText("(" + String("0" + (boardId+1)).slice(-2) + ") " + initBoardFayaa[idx].name +"\n");
+	printBoard(initBoardFayaa[idx].board);
+	displayText( " " + resultMsg + "elapsed time: " + (endTime-startTime)/times + " ms, " + result.exploreCount + " explored" +"\n\n");
+
+	scollTextToButtom();
+
+	setTimeout(function(){ outputBoardElapsedTime(boardId+1); }, 200);
+}
+</script>
+</html>

@@ -70,7 +70,7 @@ function gBoard2Key(board)
 		//---------------------------------------------------------------------
 		// Javascript only support 53 bits integer	(64 bits floating)
 		// for save space, one cell use 2 bits 
-		// and only keep the position of prime minister block (变巨)
+		// and only keep the position of prime minister block (鏇规搷)
 		//---------------------------------------------------------------------
 		// maxmum length = (4 * 5 - 4) * 2 + 4  
 		//               = 32 + 4 = 36 bits
@@ -81,7 +81,7 @@ function gBoard2Key(board)
 		// + 4   : prime minister block position use 4 bits
 		//---------------------------------------------------------------------
 		if((blockValue = board[i]) == G_GOAL_BLOCK){
-			//skip prime minister block (变巨), only keep position  
+			//skip prime minister block (鏇规搷), only keep position  
 			if(primeBlockPos < 0) primeBlockPos = i;
 			continue;
 		}

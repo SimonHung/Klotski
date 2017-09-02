@@ -1,6 +1,8 @@
 //=======================================================================================================
 // Klotski solver (華容道) - BFS (Breadth-first search)
 //
+// 09/01/2017 - fixed hash-key duplicate calculation by saving hash-key to queue 
+//
 // 08/21/2013 - add support 3 option (default = RIGHT_ANGLE_TURN)
 //
 // 05/20/2013 - Include "klitski.share.js" for share variable & function
@@ -50,17 +52,15 @@ function klotskiSolution()
 	//------------------------------------------------------------	
 	//add new state to queue and hashmap if does not exist before 
 	//------------------------------------------------------------
-	function statePropose(curBoard, parentKey)
+	function statePropose(boardObj, parentKey)
 	{
-		var curKey;
 		var acceptState;
 		var rc;
 
-		curKey = gBoard2Key(curBoard);
-		if(H.put(curKey, parentKey) == null) {
+		if(H.put(boardObj.key, parentKey) == null) {
 			//no any state same as current, add it
-			Q.add(curBoard.slice(0));
-			return 1; //add new state	
+			Q.add({board:boardObj.board.slice(0), key:boardObj.key});
+			return 1; //add new state
 		}
 		
 		return 0; //state already exist
@@ -102,12 +102,13 @@ function klotskiSolution()
 	// return how many new state created
 	// 
 	//---------------------------------------------------
-	function slideVertical(curBoard, parentKey, emptyX, emptyY, directionY, maxMove)
+	function slideVertical(boardObj, parentKey, emptyX, emptyY, directionY, maxMove)
 	{
 		var blockX, blockY; //block position (x,y)
 		var blockValue; //block value
 		var styleIndex; //index of block style
 		var blockSizeX, blockSizeY; //block style
+		var curBoard = boardObj.board;
 		
 		//Find the block
 		blockX = emptyX;
@@ -142,7 +143,7 @@ function klotskiSolution()
 
 		var stateCount = 0;
 		var boardCopied = 0;
-		var childBoard;
+		var childBoard, childObj;
 		var curKey;
 
 		do {
@@ -162,8 +163,8 @@ function klotskiSolution()
 			if(!boardCopied) {
 				//first time, copy board array & set curKey
 				childBoard = curBoard.slice(0);
-				curKey = gBoard2Key(curBoard);
-				boardCopied	= 1;			
+				curKey = boardObj.key;
+				boardCopied = 1;
 			}
 			
 			//slide empty-block up|down
@@ -172,13 +173,14 @@ function klotskiSolution()
 				childBoard[x+(emptyY + blockSizeY * directionY)*G_BOARD_X] = G_EMPTY_BLOCK;
 			}
 			
+			childObj = {board:childBoard, key:gBoard2Key(childBoard)};
 			if(parentKey != 0) {
 				//-----------------------------------------------
 				// parentKey != 0 means move more than one step
 				//-----------------------------------------------
-				stateCount += statePropose(childBoard, parentKey);
+				stateCount += statePropose(childObj, parentKey);
 			} else {
-				stateCount += statePropose(childBoard, curKey);
+				stateCount += statePropose(childObj, curKey);
 				parentKey = curKey;
 			}
 			
@@ -197,11 +199,11 @@ function klotskiSolution()
 				if(moveMode == MOVE_MODE.RIGHT_ANGLE_TURN && maxMove < emptyCount) {
 					if(minSpaceX < minBlockX && minBlockX == emptyX) {
 						//slide block left
-						stateCount += slideHorizontal(childBoard, parentKey, emptyX-1, emptyY, +1, maxMove+1);
+						stateCount += slideHorizontal(childObj, parentKey, emptyX-1, emptyY, +1, maxMove+1);
 					}
 					if(maxSpaceX > maxBlockX && maxBlockX == emptyX) {
 						//slide block right
-						stateCount += slideHorizontal(childBoard, parentKey, emptyX+1, emptyY, -1, maxMove+1);
+						stateCount += slideHorizontal(childObj, parentKey, emptyX+1, emptyY, -1, maxMove+1);
 					}
 				}
 			}
@@ -220,13 +222,14 @@ function klotskiSolution()
 	//
 	// return how many new state created
 	//---------------------------------------------------
-	function slideHorizontal(curBoard, parentKey, emptyX, emptyY, directionX, maxMove)
+	function slideHorizontal(boardObj, parentKey, emptyX, emptyY, directionX, maxMove)
 	{
 		var blockX, blockY; //block position (x,y)
 		var blockValue; //block value
 		var styleIndex; //index of block style
 		var blockSizeX, blockSizeY; //block style
-		
+		var curBoard = boardObj.board;
+
 		//Find the block
 		blockX = emptyX + directionX;
 		if(blockX < 0 || blockX >= G_BOARD_X) return 0; //out of range
@@ -248,7 +251,7 @@ function klotskiSolution()
 		//      |          +---+   --+-- min-Y
 		//      |          |   |     |
 		//  empty space    |   |   block
-		//      |          |   |	 | 
+		//      |          |   |     | 
 		//      |          +---+   --+-- max-Y
 		//    --+-- max-Y 
 		// 
@@ -264,7 +267,7 @@ function klotskiSolution()
 		
 		var stateCount = 0;
 		var boardCopied = 0;
-		var childBoard;
+		var childBoard, childObj;
 		var curKey;
 
 		do {
@@ -284,7 +287,7 @@ function klotskiSolution()
 			if(!boardCopied) {
 				//first time, copy board array & set curKey
 				childBoard = curBoard.slice(0); 
-				curKey = gBoard2Key(curBoard);
+				curKey = boardObj.key;
 				boardCopied = 1;
 			}
 			
@@ -293,13 +296,15 @@ function klotskiSolution()
 				childBoard[emptyX+y*G_BOARD_X] = blockValue;
 				childBoard[(emptyX + blockSizeX * directionX)+y*G_BOARD_X] = G_EMPTY_BLOCK;
 			}
+			
+			childObj = {board:childBoard, key:gBoard2Key(childBoard)};
 			if(parentKey != 0) {
 				//-----------------------------------------------
 				// parentKey != 0 means move more than one step
 				//-----------------------------------------------
-				stateCount += statePropose(childBoard, parentKey);
+				stateCount += statePropose(childObj, parentKey);
 			} else {
-				stateCount += statePropose(childBoard, curKey);
+				stateCount += statePropose(childObj, curKey);
 				parentKey = curKey;
 			}
 			
@@ -318,11 +323,11 @@ function klotskiSolution()
 				if(moveMode == MOVE_MODE.RIGHT_ANGLE_TURN && maxMove < emptyCount) {
 					if(minSpaceY < minBlockY && minBlockY == emptyY) {
 						//slide block up (empty down)
-						stateCount += slideVertical(childBoard, parentKey, emptyX, emptyY-1, +1, maxMove+1);
+						stateCount += slideVertical(childObj, parentKey, emptyX, emptyY-1, +1, maxMove+1);
 					}
 					if(maxSpaceY > maxBlockY && maxBlockY == emptyY) {
 						//slide block down (empty up)
-						stateCount += slideVertical(childBoard, parentKey, emptyX, emptyY+1, -1, maxMove+1);
+						stateCount += slideVertical(childObj, parentKey, emptyX, emptyY+1, -1, maxMove+1);
 					}
 				}
 			}
@@ -348,7 +353,7 @@ function klotskiSolution()
 	//---------------------------------------------
 	// for all empty block to find the next state
 	//---------------------------------------------
-	function explore(curBoard)
+	function explore(boardObj)
 	{
 		var stateCount=0; //how many new state created
 		var eCount = 0;   //empty count
@@ -357,20 +362,20 @@ function klotskiSolution()
 		for (var emptyX = 0; emptyX < G_BOARD_X; emptyX++) {
 			for (var emptyY = 0; emptyY < G_BOARD_Y; emptyY++) {
 
-				if (curBoard[emptyX+emptyY*G_BOARD_X] != G_EMPTY_BLOCK) continue;
+				if (boardObj.board[emptyX+emptyY*G_BOARD_X] != G_EMPTY_BLOCK) continue;
 				eCount++;
 
 				//slide empty up ==> block down
-				stateCount += slideVertical(curBoard, 0, emptyX, emptyY, -1, 0); //block at Y-1
+				stateCount += slideVertical(boardObj, 0, emptyX, emptyY, -1, 0); //block at Y-1
 			
 				//slide empty down ==> block up
-				stateCount += slideVertical(curBoard, 0, emptyX, emptyY, +1, 0); //block at Y+1
+				stateCount += slideVertical(boardObj, 0, emptyX, emptyY, +1, 0); //block at Y+1
 
 				//slide empty left ==> block right
-				stateCount += slideHorizontal(curBoard, 0, emptyX, emptyY, -1, 0); //block at X-1
+				stateCount += slideHorizontal(boardObj, 0, emptyX, emptyY, -1, 0); //block at X-1
 			
 				//slide empty right ==> block left  
-				stateCount += slideHorizontal(curBoard, 0, emptyX, emptyY, +1, 0); //block at X+1 
+				stateCount += slideHorizontal(boardObj, 0, emptyX, emptyY, +1, 0); //block at X+1 
 				if(eCount >= emptyCount) break breakLoop;
 			}
 		}
@@ -425,18 +430,18 @@ function klotskiSolution()
 		startTime = new Date();
 
 		//Put the initial state to BFS queue & hash map
-		statePropose(initBoard, 0);
+		statePropose({board:initBoard, key:gBoard2Key(initBoard)}, 0);
 		exploreCount = 1; //initial state
 		
 		while (Q.size() > 0) {
-			var curBoard = Q.remove();
+			var boardObj = Q.remove();
 			
-			if (reachGoal(curBoard)) {
+			if (reachGoal(boardObj.board)) {
 				boardList = [];
-				getAnswerList(gBoard2Key(curBoard), boardList); 
+				getAnswerList(boardObj.key, boardList); 
 				break; //find a solution
 			}
-			exploreCount += explore(curBoard); //find next board state
+			exploreCount += explore(boardObj); //find next board state
 		}
 		endTime = new Date();
 		

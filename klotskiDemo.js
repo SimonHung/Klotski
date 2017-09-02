@@ -677,7 +677,7 @@ function main()
 		resultMsg = totalSteps + " steps, ";
 	}
 	
-	displayText( " " + resultMsg + "elapsed time: " + result.elapsedTime + ", " + result.exploreCount + " explored" +"\n");
+	displayText( " " + resultMsg + "elapsed time: " + result.elapsedTime*1000 + " ms, " + result.exploreCount + " explored" +"\n");
 	//displayText(((typeof gInitBoard[boardIndex].user != 'undefined')? " 提供者: " + gInitBoard[boardIndex].user+",":"")+((typeof gInitBoard[boardIndex].url != 'undefined')? " 取自: " + gInitBoard[boardIndex].url:"") + "\n");
 	displayText("\n");
 	
