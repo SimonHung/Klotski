@@ -1,7 +1,14 @@
 //=============================================================================
 // Klotski (華容道) main program
 //
-// include files: kinetic-v4.5.4.js (http://kineticjs.com/)
+// include libraries: kinetic-v4.5.4.js (http://kineticjs.com/)
+//                    preloadjs-0.6.2.min.js (http://createjs.com/)
+//                    soundjs-0.6.2.min.js (http://createjs.com/)
+//
+// V1.4
+// 09/07/2017 - (1) Bug Fixed: load audio from MicroSoft Edge will cause program hang
+//                  ==> Change to use PreloadJS & SoundJS to load and play audio
+//              (2) Performance improvement: Slover skip calculation the mirror state
 //
 // V1.3
 // 08/31/2013 - (1) Edit mode: display step number = 0 while press clear button
@@ -29,7 +36,7 @@
 //===========
 // define 
 //===========
-var VERSION_STRING = "1.3";
+var VERSION_STRING = "1.4";
 var DATA_VERSION = 1;
 
 var MIN_SCREEN_X = 1000;
@@ -145,7 +152,7 @@ function initBoard()
 	
 	enableGameButton();
  
-	setTimeout(function(){audioPlayTitle();}, 500 );
+	setTimeout(function(){audioPlayStartup();}, 500 );
 }
 
 var playMode = 0; //0: start mode, 1: play mode, 2:demo mode, 3: edit mode

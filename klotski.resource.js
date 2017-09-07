@@ -9,8 +9,8 @@
 //==================
 var gTxtMsg;
 var images = {};
-var audio = {};
 var noAudio = 0; //no audio support
+var preload; //preload resource object
 
 //============
 // resource 
@@ -204,6 +204,7 @@ function getSystemLanguage()
 
 //----------------------------------------------------------------------------------------
 // reference: http://www.html5canvastutorials.com/tutorials/html5-canvas-image-loader/
+//            Change load audio by PreloadJS & SoundJS, 09/07/2017
 //----------------------------------------------------------------------------------------
 //=======================
 // (1) set text message
@@ -217,41 +218,38 @@ function loadResource(callback)
 	audioPreload(callback);
 }
 
-function audioPreload(callback) 
+var audioSource = [
+//audio
+	{ id: "startup",   src: "audio/title.ogg"},
+	{ id: "woodHit",   src: "audio/woodhit.ogg"},
+	{ id: "happyPass", src: "audio/pass.ogg"},
+	{ id: "stamp",     src: "audio/stamp.ogg"},
+	{ id: "good",      src: "audio/good.ogg"},
+	{ id: "exist",     src: "audio/exist.ogg"},
+	{ id: "error",     src: "audio/error.ogg"},
+	{ id: "success",   src: "audio/success.ogg"}
+];
+
+function audioPreload(callback)
 {
-	var loadedFiles = 0;
-	var totalFiles = 0;
-	var audioType = audioSupport();
-	
-	if(audioType == 'none') {
-		//audio type (mp3 & ogg) without support 
-		noAudio = 1;
-		imagePreload(callback); //load images
-		return;
+	preload = new createjs.LoadQueue(true);
+	createjs.Sound.alternateExtensions = ["mp3"];
+	preload.installPlugin(createjs.Sound);
+	preload.on("error", handleFileError);
+	//preload.on("progress", handleProgress);
+	preload.on("complete", handleComplete);
+
+	preload.loadManifest(audioSource);
+
+	function handleFileError(event) 
+	{
+		console.log("error", event);
 	}
 
-	// get num of audio sources
-	for(var src in audioSource) {
-		totalFiles++;
+	function handleComplete(event) 
+	{
+		imagePreload(callback); 
 	}
-
-	debug("audio totalFiles = " + (totalFiles));
-	
-	//preload audio source
-	for(var src in audioSource) {
-		audio[src] = new Audio();
-		
-		audio[src].addEventListener("loadeddata",
-			function() {
-				debug("audio loadedFiles = " + (loadedFiles+1) + " " + this.src);
-				if(++loadedFiles >= totalFiles) {
-					//audio load complete
-					imagePreload(callback); //load images;
-				}
-			}
-		);
-		audio[src].src = audioSource[src] + "." + audioType; //mp3 or ogg
-	}	
 }
 
 function imagePreload(callback) 
@@ -279,79 +277,48 @@ function imagePreload(callback)
 	}
 }
 
-//==========================
-// BEGIN for audio function
-//==========================
-function audioSupport() 
+function soundPlay(name)
 {
-	var a = document.createElement('audio');
-	
-	//IE, Chrome, FireFox
-	var mp3 = !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
-	if (mp3) return 'mp3';	
-
-	//Chrome, FireFox
-	var ogg = !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
-	if (ogg) return 'ogg';
-	
-	return 'none';
+	if(!volumeState) return;
+	return createjs.Sound.play(name);
 }
 
-function audioPlayTitle()
+function audioPlayStartup()
 {
-	if(noAudio || !volumeState) return;
-	audio.title.currentTime = 0;
-	//audio.title.loop = true;
-	audio.title.volume = 1;
-	audio.title.play();
+	soundPlay("startup");
 }
 
 function audioPlayWoodHit()
 {
-	if(noAudio || !volumeState) return;
-	audio.woodHit.currentTime = 0;
-	audio.woodHit.volume = 0.4;
-	audio.woodHit.play();
+	soundPlay("woodHit");
 }
 
 function audioPlayHappyPass()
 {
-	if(noAudio || !volumeState) return;
-	audio.happyPass.currentTime = 0;
-	audio.happyPass.play();
+	soundPlay("happyPass");
 }
 
 function audioPlayGood()
 {
-	if(noAudio || !volumeState) return;
-	audio.good.currentTime = 0;
-	audio.good.play();
+	soundPlay("good");
 }
 
 function audioPlayExist()
 {
-	if(noAudio || !volumeState) return;
-	audio.exist.currentTime = 0;
-	audio.exist.play();
+	soundPlay("exist");
 }
 
 function audioPlayError()
 {
-	if(noAudio || !volumeState) return;
-	audio.error.currentTime = 0;
-	audio.error.play();
+	soundPlay("error");
 }
 
 function audioPlaySuccess()
 {
-	if(noAudio || !volumeState) return;
-	audio.success.currentTime = 0;
-	audio.success.play();
+	soundPlay("success");
 }
 
 function audioPlayStamp()
 {
-	if(noAudio || !volumeState) return;
-	audio.stamp.currentTime = 0;
-	audio.stamp.play();
+	soundPlay("stamp");
 }
