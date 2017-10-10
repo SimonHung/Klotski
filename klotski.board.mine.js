@@ -15,10 +15,10 @@
 // @, AA BB CC DD EE FF GG  H  I  J  K  L  M  N  O  P  Q  R  S  T  U  V  W  X  Y  Z  [
 //    AA                    H  I  J  K  L  M
 //---------------------------------------------------------------------------------------
-var MY_HOME="\u543E\u5C45\u7121\u675F";
+var MY_HOME="\u543e\u5c45\u7121\u675f";
 
-//var MY_URL="http://simonsays.3area.info";
-var MY_URL="\u0068\u0074\u0074\u0070\u003A\u002F\u002F\u0073\u0069\u006D\u006F\u006E\u0073\u0061\u0079\u0073\u002E\u0033\u0061\u0072\u0065\u0061\u002E\u0069\u006E\u0066\u006F"; 
+//var MY_URL="http://simonsays-tw.com";
+var MY_URL="\u0068\u0074\u0074\u0070\u003a\u002f\u002f\u0073\u0069\u006d\u006f\u006e\u0073\u0061\u0079\u0073\u002d\u0074\u0077\u002e\u0063\u006f\u006d"; 
 
 var initBoardMine = [
 	{
