@@ -18,7 +18,7 @@ var preload; //preload resource object
 var twTextMsg = {
 	//play mode:
 	GameMode: "遊戲模式",
-	DemoMode: "展示模式",
+	DemoMode: "示範模式",
 	EditMode: "編輯模式",
 	EditModeMsg: "自建關卡, 供遊戲模式使用.",
 

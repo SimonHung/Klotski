@@ -5,6 +5,9 @@
 //                    preloadjs-0.6.2.min.js (http://createjs.com/)
 //                    soundjs-0.6.2.min.js (http://createjs.com/)
 //
+// V1.5 
+// 01/08/2018 - (1) Change "展示" to "示範"
+//
 // V1.4
 // 09/07/2017 - (1) Bug Fixed: load audio from MicroSoft Edge will cause program hang
 //                  ==> Change to use PreloadJS & SoundJS to load and play audio
@@ -36,7 +39,7 @@
 //===========
 // define 
 //===========
-var VERSION_STRING = "1.4";
+var VERSION_STRING = "1.5";
 var DATA_VERSION = 1;
 
 var MIN_SCREEN_X = 1000;
