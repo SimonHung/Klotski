@@ -8,4 +8,4 @@ This program build with Javascript + [KineticJS](http://kineticjs.com).
 
 ## <a target="_blank" href="https://simonhung.github.io/Klotski/klotskiDemo.html">Klotski solver</a>
 
-## <a target="_blank" href="https://simonhung.github.io/Klotski/klotski.puzzle.html">Play Klotski game online</a>
+## <a target="_blank" href="https://simonhung.github.io/Klotski/klotski.puzzle.html">Play Klotski online</a>
